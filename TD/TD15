@@ -1,0 +1,66 @@
+1
+SELECT P1999 , P2010, Dpt, NomMaj
+FROM Villes_France
+WHERE P1999 > P2010 AND P1999 > 60000
+
+2
+SELECT P2010, Dpt, NomMaj
+FROM Villes_France
+WHERE P2010 > 100000
+
+3
+SELECT AVG(P2010) AS 'Population moyenne'
+FROM Villes_France
+WHERE P2010 > 100000
+
+4
+SELECT Dpt, SUM(P2010) AS 'Population par departement'
+FROM Villes_France
+GROUP BY Dpt
+ORDER BY SUM(P2010) DESC
+
+5
+SELECT DISTINCT Dpt, P2010 AS 'Population > 100000 par departement'
+FROM Villes_France
+WHERE P2010 > 100000
+ORDER BY P2010 DESC
+
+6
+Ne marche pas
+
+5
+SELECT Country.Name , CountryLanguage.Percentage
+FROM Country
+  JOIN CountryLanguage 
+  ON Country.Code = CountryLanguage.CountryCode
+WHERE CountryLanguage.Language = "French" 
+  AND CountryLanguage.Percentage > 0
+
+6
+SELECT Country.Name
+FROM Country
+  JOIN City 
+  ON Country.Capital = City.ID
+WHERE City.Population > 1000000
+
+7
+SELECT DISTINCT Country.Name
+FROM Country
+  JOIN City 
+  ON Country.Capital = City.ID
+WHERE City.Population > 500000
+
+9
+SELECT Country.Continent, 
+       SUM(CountryLanguage.Percentage * 
+           Country.Population/100)
+FROM Country
+  JOIN CountryLanguage
+  ON CountryLanguage.CountryCode = Country.Code
+WHERE CountryLanguage.Language = "French"
+GROUP By Country.Continent
+
+10
+SELECT Country.Continent
+
+
